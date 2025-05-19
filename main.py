@@ -1,5 +1,8 @@
-import pygame
 import os
+os.environ['PYGAME_HIDE_SUPPORT_PROMPT'] = '1'
+
+import pygame
+import sys
 from constants import *
 from player import Player
 from asteroid import Asteroid
@@ -32,6 +35,11 @@ def main():
         
         updatable.update(dt)
         
+        for asteroid in asteroids:
+            if player.collision(asteroid):
+                print("Game Over!")
+                sys.exit()
+
         screen.fill("black")
 
         for item in drawable:
